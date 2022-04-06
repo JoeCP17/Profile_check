@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql
+    ports:
+      - "3300:3306"
+    environment: # -e 옵션
+      - MYSQL_DATABASE=Profile_Check
+      - MYSQL_ROOT_PASSWORD=1234 # MYSQL root 패스워드 설정 옵션
+      - TZ=Asia/Seoul
+    volumes:
+      - profilecheck_mysqlVolume:/data/db
+    
+volumes:
+  profilecheck_mysqlVolume:
