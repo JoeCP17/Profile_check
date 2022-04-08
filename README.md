@@ -1,6 +1,8 @@
 # Profiler_submit
 
-MySQL Dockerfile 만들어야함 
+MySQL Dockerfile ok
+<br> 
+연결해야댐
 
 <br>
 <br>
