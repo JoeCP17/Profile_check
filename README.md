@@ -2,7 +2,7 @@
 
 MySQL Dockerfile ok
 <br> 
-연결해야댐
+MySQL dataset parshing ...
 
 <br>
 <br>
