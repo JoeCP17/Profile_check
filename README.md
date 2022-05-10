@@ -1,8 +1,6 @@
 # Profiler_submit
 
-MySQL Dockerfile ok
-<br> 
-MySQL dataset parshing ...
+데이터를 업로드한 후, 데이터 그래프를 만들어보자! 
 
 <br>
 <br>
