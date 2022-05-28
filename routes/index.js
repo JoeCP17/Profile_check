@@ -4,7 +4,6 @@ const path = require('path');
 const router = express.Router();
 const {spawn} = require('child_process');
 const fs =require('fs');
-//모델 객체들을 생성
 const Task1 =require('../models').Task1;
 const Task2 =require('../models').Task2;
 const Task3 =require('../models').Task3;
@@ -17,7 +16,7 @@ const Core4 =require('../models').Core4;
 const Core5 =require('../models').Core5;
 const task1 = require('../models/task1');
 const core1 = require('../models/core1');
-//Task 객체들에 각 core별로 값을 넣기 위한 중간 저장소로 배열들을 선언
+
 const arr1 = new Array();
 const arr2 = new Array();
 const arr3 = new Array();
@@ -29,7 +28,7 @@ const core1_min=new Array();
 const core1_avg=new Array();
 const array=Array(Array(),Array());
 
-//'/'로 get요청이 오면 multipart html을 응답
+
 router.get('/', function(req, res, next) {
       res.render('multipart');
    });
@@ -37,22 +36,22 @@ router.get('/', function(req, res, next) {
 var user_file;
 
 
-//사용자가 파일을 올리면 그 파일은 upload폴더 안에 생성
+
 const upload = multer({
-      storage: multer.diskStorage({ //올릴 부분에 대한 정보
-            destination(req, file, done){ // 실제로 파일이 올라갈 부분 명시
+      storage: multer.diskStorage({ 
+            destination(req, file, done){ 
                   done(null, 'uploads/');
             },
-            filename(req, file, done){ //파일의 이름 명시를 통해 파일이 겹치는걸 방지
+            filename(req, file, done){ 
                   const ext = path.extname(file.originalname);
                   user_file = path.basename(file.originalname, ext) + Date.now() + ext; 
                   done(null, user_file);
             },
       }),
-      limits: {filesize: 5 * 1024 * 1024}, //파일 사이즈
+      limits: {filesize: 5 * 1024 * 1024}, 
 });
 
-// '/'로 post 요청이 오면 실제로 upload
+
 router.post('/', 
       upload.fields([{name: 'txt1'}]),
       (req, res, next)=> {
@@ -61,18 +60,18 @@ router.post('/',
       },
 );
 
-//그 후 사용자가 올린 파일을 이용하여 데이터 가공 및 결과 html 응답
+
 router.post('/', async (req, res) => {
-      //데이터 가공을 위한 함수 호출(파이썬을 이용하여 파일 가공)
+
       await gotopython()
-      //가공된 파일을 읽어서 DB에 저장하는 함수 호출
+
       await readtxtfile(user_file);
-      //결과 페이지를 보여줌
+
       res.render('result');
       }
  );
 
- //사용자가 누른 버튼이 core1이라면 core1에 맞는 데이터를 json형식으로 보내줌, 나머지도 동일
+
  router.get('/core1', async(req,res)=>{
       res.status(201).json(await core1data());
  });
@@ -104,7 +103,6 @@ router.post('/', async (req, res) => {
       res.status(201).json(await task5data());
  });
 
- //Task5 모델에 맞는 데이터들의 최댓값 최솟값 평균을 구하는 함수, 나머지도 모델에 맞게 생성
  async function task5data(){
       let core1_max;
       let core1_min;
@@ -121,7 +119,7 @@ router.post('/', async (req, res) => {
       let core5_max;
       let core5_min;
       let core5_avg;
-      //Task5 모델의 attribute가 core1인 값들 중에서 최댓값을 저장, 나머지도 최대, 최소, 평균에 맞게 저장
+     
       core1_max = await Task5.max('core1').then(max => {
             return max;
       });
@@ -168,7 +166,6 @@ router.post('/', async (req, res) => {
             return sum / 10;
       });
 
-      //추출한 값들을 json형식으로 전송하기 위하여 json배열을 생성하고 값 저장
       task5_value = {
             max_core1 : core1_max,
             min_core1 : core1_min,
@@ -931,7 +928,6 @@ async function core2data(){
 return core2_value;
 }
 
-//파이썬을 이용한 데이터 가공
 async function gotopython(){
       let dataToSend;
       let python_loc = path.join(__dirname, '../python_module/remake_file.py');
@@ -944,7 +940,7 @@ async function gotopython(){
       python.on('close', (code) => {
             console.log('exit pythonModule');    
       })
-      //파이썬을 이용하여 데이터 가공이 완료된 후 완료된 파일을 읽어야 하므로 파이썬 모듈이 실행 완료될 때까지 대기
+
       for await(const data of python.stdout){
       } 
 }
@@ -953,13 +949,12 @@ async function gotopython(){
 function readtxtfile(filename){
       let fileloc=path.join(__dirname,'../remake/'+filename);
       console.log(fileloc);
-      //가공된 파일 읽기
+
      arr = fs.readFileSync(fileloc).toString().split("\n");
 
      for(i=0; i<arr.length;i++){
            line = arr[i].split("\t");  
-           //읽어온 라인에서 5만큼의 주기로 Core 값들을 읽기 때문에 5로나눈 나머지 별로 값들을 저장
-           //만약 13번째로 읽어온 라인이라면 Core3에 맞는 값들이기 때문에 Core3에 저장
+
            insertcore(i%5,line); 
      }
      inserttask(arr1,arr2,arr3,arr4,arr5);   
@@ -974,8 +969,7 @@ function insertcore(datanum, line){
                   task4:line[4],
                   task5:line[5]
             });
-            //Task의 값들은 Core처럼 line을 읽어올 때 한번에 삽입할 수 없으므로 Task의 각 core값 별로 모아서 저장해야함
-            //그래서 중간 저장소로 배열에 저장
+            
             arr1.push(line[1]);
             arr2.push(line[2]);
             arr3.push(line[3]);

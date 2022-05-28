@@ -76,8 +76,8 @@
           xhr.onload=function(){
                 var core2 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, { 
+                  type: 'line', 
                   data: { labels: ['task1', 'task2', 'task3', 'task4', 'task5'], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -95,7 +95,7 @@
                         borderColor: 'blue', 
                         data: [core2["avg_task1"], core2["avg_task2"], core2["avg_task3"], core2["avg_task4"], core2["avg_task5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });          }
           xhr.open('GET','/core2',true);
@@ -106,8 +106,8 @@
           xhr.onload=function(){
                 var core3 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, { 
+                  type: 'line', 
                   data: { labels: ['task1', 'task2', 'task3', 'task4', 'task5'], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -125,7 +125,7 @@
                         borderColor: 'blue', 
                         data: [core3["avg_task1"], core3["avg_task2"], core3["avg_task3"], core3["avg_task4"], core3["avg_task5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });
           }
@@ -137,8 +137,8 @@
           xhr.onload=function(){
                 var core4 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, {  
+                  type: 'line', 
                   data: { labels: ['task1', 'task2', 'task3', 'task4', 'task5'], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -156,7 +156,7 @@
                         borderColor: 'blue', 
                         data: [core4["avg_task1"], core4["avg_task2"], core4["avg_task3"], core4["avg_task4"], core4["avg_task5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });          }
           xhr.open('GET','/core4',true);
@@ -167,8 +167,8 @@
           xhr.onload=function(){
                 var core5 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, { 
+                  type: 'line', 
                   data: { labels: ['task1', 'task2', 'task3', 'task4', 'task5'], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -186,7 +186,7 @@
                         borderColor: 'blue', 
                         data: [core5["avg_task1"], core5["avg_task2"], core5["avg_task3"], core5["avg_task4"], core5["avg_task5"]] 
                   }] 
-            }, // 옵션
+            },
              options: {} 
             });
           }
@@ -198,8 +198,8 @@
           xhr.onload=function(){
                 var task1 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, { 
+                  type: 'line',
                   data: { labels: ['core1', 'core2', 'core3', 'core4', 'core5', ], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -217,7 +217,7 @@
                         borderColor: 'blue', 
                         data: [task1["avg_core1"], task1["avg_core2"], task1["avg_core3"], task1["avg_core4"], task1["avg_core5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });
           }
@@ -229,8 +229,8 @@
           xhr.onload=function(){
                 var task2 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, {
+                  type: 'line', 
                   data: { labels: ['core1', 'core2', 'core3', 'core4', 'core5', ], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -248,7 +248,7 @@
                         borderColor: 'blue', 
                         data: [task2["avg_core1"], task2["avg_core2"], task2["avg_core3"], task2["avg_core4"], task2["avg_core5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });          }
           xhr.open('GET','/task2',true);
@@ -259,8 +259,8 @@
           xhr.onload=function(){
                 var task3 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, { 
+                  type: 'line', 
                   data: { labels: ['core1', 'core2', 'core3', 'core4', 'core5', ], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -278,7 +278,7 @@
                         borderColor: 'blue', 
                         data: [task3["avg_core1"], task3["avg_core2"], task3["avg_core3"], task3["avg_core4"], task3["avg_core5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });
           }
@@ -290,8 +290,8 @@
           xhr.onload=function(){
                 var task4 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+                var chart = new Chart(ctx, { 
+                  type: 'line', 
                   data: { labels: ['core1', 'core2', 'core3', 'core4', 'core5', ], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -309,7 +309,7 @@
                         borderColor: 'blue', 
                         data: [task4["avg_core1"], task4["avg_core2"], task4["avg_core3"], task4["avg_core4"], task4["avg_core5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });
           }
@@ -321,8 +321,8 @@
           xhr.onload=function(){
                 var task5 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-            var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
+            var chart = new Chart(ctx, { 
+                  type: 'line', 
                   data: { labels: ['core1', 'core2', 'core3', 'core4', 'core5', ], 
                   datasets: [{ 
                         label: 'MAX', 
@@ -340,7 +340,7 @@
                         borderColor: 'blue', 
                         data: [task5["avg_core1"], task5["avg_core2"], task5["avg_core3"], task5["avg_core4"], task5["avg_core5"]] 
                   }] 
-            }, // 옵션
+            }, 
              options: {} 
             });
           }

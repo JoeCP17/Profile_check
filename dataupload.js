@@ -9,13 +9,12 @@ const fs = require('fs');
 const models=require("./models");
 const indexrouter=require("./routes/index");
 const nunjucks = require('nunjucks');
-//const models = require("./models/index.js");
 
 
-dotenv.config(); //dotenv에서 process.env로 만드는 과정 수행
-const app = express(); // Server 실행. Express <== http를 다 포함하고 있다.
+dotenv.config(); 
+const app = express(); 
 app.use(session({ secret: 'somevalue' }));
-app.set('port', process.env.PORT || 3000); //포트 설정
+app.set('port', process.env.PORT || 3100);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
       express:app,
@@ -41,7 +40,7 @@ app.listen(app.get('port'),()=>{
 })
 
 
-//사용자가 올린 파일을 저장할 폴더 생성
+
 try{
       fs.readdirSync('uploads');
 }catch(error){
@@ -49,7 +48,7 @@ try{
       fs.mkdirSync('uploads');
 }
 
-//로컬 DB 연결
+
 models.sequelize.sync().then( () => {
       console.log(" DB 연결 성공");
     }).catch(err => {
@@ -57,7 +56,6 @@ models.sequelize.sync().then( () => {
       console.log(err);
     });
 
-//rotes 폴더 안에 있는 index.js 사용
 app.use('/',indexrouter);
 
 app.get('/', (req, res, next) => {
