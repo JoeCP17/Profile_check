@@ -1,6 +1,6 @@
 # Profile_check
 
-실행밤법 
+실행방법 
 ~~~~~~~~~~~~
 $ git https://github.com/JoeCP17/Profile_check.git
 $ node dataupload.js 
