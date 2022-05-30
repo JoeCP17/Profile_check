@@ -947,7 +947,7 @@ async function gotopython(){
 
 
 function readtxtfile(filename){
-      let fileloc=path.join(__dirname,'../uploads/'+filename);
+      let fileloc=path.join(__dirname,'../remake/'+filename);
       console.log(fileloc);
 
      arr = fs.readFileSync(fileloc).toString().split("\n");
