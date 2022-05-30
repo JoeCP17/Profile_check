@@ -930,7 +930,7 @@ return core2_value;
 
 async function gotopython(){
       let dataToSend;
-      let python_loc = path.join(__dirname, '../python_module/remake_file.py');
+      let python_loc = path.join(__dirname, '../python_module/fileRemake.py');
       console.log(python_loc);
       const python = spawn('python3', [python_loc, user_file]);
       python.stdout.on('data', (data) => {
