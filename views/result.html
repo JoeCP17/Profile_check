@@ -13,6 +13,11 @@
                   display: inline-block;
                   font-size: 16px;
                 }
+            .text {text-align: center;}
+            .button_box {
+                  width:800px;
+                  height:800px;
+                  margin:0 auto;}
       </style>
       <meta charset="UTF-8"> 
       <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -26,38 +31,38 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> 
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       
-      <div>
+      <div class="button_box">
+            <div class="text">
+                  작업 단위
+            </div>
             <ul>
-                  <li><button id="core1" type="button" onclick="core1click()">core1</button><li>
-                  <li><button id="core2" type="button"onclick="core2click()">core2</button></li>
-                  <li><button id="core3" type="button"onclick="core3click()">core3</button></li>
-                  <li><button id="core4" type="button"onclick="core4click()">core4</button></li>
-                  <li><button id="core5" type="button"onclick="core5click()">core5</button></li>
-             
                   <li><button id="task1" type="button"onclick="task1click()">task1 </button><li>
                   <li><button id="task2" type="button"onclick="task2click()">task2 </button></li>
                   <li><button id="task3" type="button"onclick="task3click()">task3 </button></li>
                   <li><button id="task4" type="button"onclick="task4click()">task4 </button></li>
                   <li><button id="task5" type="button"onclick="task5click()">task5 </button></li>
             </ul>
-      </div>
-      <div>
+            <div class="text">
+                  코어 단위
+            </div>
+            <ul>
+                  <li><button id="core1" type="button" onclick="core1click()">core1</button><li>
+                  <li><button id="core2" type="button"onclick="core2click()">core2</button></li>
+                  <li><button id="core3" type="button"onclick="core3click()">core3</button></li>
+                  <li><button id="core4" type="button"onclick="core4click()">core4</button></li>
+                  <li><button id="core5" type="button"onclick="core5click()">core5</button></li>
+            </ul>
       </div>
       
     <script>
-          //버튼을 클릭했을 때 일어나는 이벤트(함수)를 정의, 밑에 함수들도 동일
           async function core1click(){
           var xhr = new XMLHttpRequest();
           xhr.onload=function(){
-                //node js에서 보낸 데이터를 Json형식으로 받아옴
-                //받아온 데이터를 core1에 저장
                 var core1 = JSON.parse(xhr.responseText);
                 var ctx = document.getElementById('myChart').getContext('2d'); 
-                var chart = new Chart(ctx, { // 챠트 종류를 선택 
-                  type: 'line', // 챠트를 그릴 데이타 
-                  //각 값들이 무엇을 의미하는지 label을 생성
+                var chart = new Chart(ctx, { 
+                  type: 'line',
                   data: { labels: ['task1', 'task2', 'task3', 'task4', 'task5'], 
-                  //실제 데이터
                   datasets: [{ 
                         label: 'MAX', 
                         backgroundColor: 'transparent', 
