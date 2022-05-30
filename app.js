@@ -48,6 +48,13 @@ try{
       fs.mkdirSync('uploads');
 }
 
+try{
+      fs.readdirSync('remake');
+}catch(error){
+      console.error('remake 폴더가 없어 uploads 폴더를 생성합니다.');
+      fs.mkdirSync('remake');
+}
+
 
 models.sequelize.sync().then( () => {
       console.log(" DB 연결 성공");
