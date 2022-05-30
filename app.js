@@ -51,7 +51,7 @@ try{
 try{
       fs.readdirSync('remake');
 }catch(error){
-      console.error('remake 폴더가 없어 uploads 폴더를 생성합니다.');
+      console.error('remake 폴더가 없어 remake 폴더를 생성합니다.');
       fs.mkdirSync('remake');
 }
 
