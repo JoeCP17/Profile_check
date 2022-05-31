@@ -1,22 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": "SQL 비밀번호쓰기",
-    "database": "DB만든후 DB명 작성",
+    "password": "1234",
+    "database": "data",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "SQL 비밀번호쓰기",
-    "database": "DB만든후 DB명 작성",
+    "password": "1234",
+    "database": "data",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "SQL 비밀번호쓰기",
-    "database": "DB만든후 DB명 작성",
+    "password": "1234",
+    "database": "data",
     "host": "localhost",
     "dialect": "mysql"
   }

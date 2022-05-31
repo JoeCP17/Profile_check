@@ -7,12 +7,7 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
-
-
-  const sequelize = new Sequelize(config.database, config.username, config.password, config);
-
-
-
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
@@ -27,9 +22,5 @@ db.Core2=require('./core2')(sequelize,Sequelize);
 db.Core3=require('./core3')(sequelize,Sequelize);
 db.Core4=require('./core4')(sequelize,Sequelize);
 db.Core5=require('./core5')(sequelize,Sequelize);
-
-
-
-
 
 module.exports = db;

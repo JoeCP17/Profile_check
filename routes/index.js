@@ -14,8 +14,7 @@ const Core2 =require('../models').Core2;
 const Core3 =require('../models').Core3;
 const Core4 =require('../models').Core4;
 const Core5 =require('../models').Core5;
-const task1 = require('../models/task1');
-const core1 = require('../models/core1');
+
 
 const arr1 = new Array();
 const arr2 = new Array();
@@ -23,14 +22,10 @@ const arr3 = new Array();
 const arr4 = new Array();
 const arr5 = new Array();
 
-const core1_max=new Array();
-const core1_min=new Array();
-const core1_avg=new Array();
-const array=Array(Array(),Array());
 
 
 router.get('/', function(req, res, next) {
-      res.render('multipart');
+      res.render('upload');
    });
 
 var user_file;
