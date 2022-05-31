@@ -48,7 +48,7 @@ const upload = multer({
 
 
 router.post('/', 
-      upload.fields([{name: 'txt1'}]),
+      upload.fields([{name: 'txtfile'}]),
       (req, res, next)=> {
             console.log(req.files, req.body);
             next();
@@ -58,8 +58,7 @@ router.post('/',
 
 router.post('/', async (req, res) => {
 
-      await gotopython()
-
+      await txtpython()
       await readtxtfile(user_file);
 
       res.render('result');
@@ -923,7 +922,7 @@ async function core2data(){
 return core2_value;
 }
 
-async function gotopython(){
+async function txtpython(){
       let dataToSend;
       let python_loc = path.join(__dirname, '../python_module/fileRemake.py');
       console.log(python_loc);
@@ -970,7 +969,6 @@ function insertcore(datanum, line){
             arr3.push(line[3]);
             arr4.push(line[4]);
             arr5.push(line[5]);
-
 
       }
       else if(datanum==1){
