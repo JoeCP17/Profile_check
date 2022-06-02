@@ -1,14 +1,11 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const Sequelize = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class task3 extends Model {
-
+  class task3 extends Sequelize.Model {
     static associate(models) {
-
     }
   };
+
   task3.init({
     core1: DataTypes.INTEGER,
     core2: DataTypes.INTEGER,

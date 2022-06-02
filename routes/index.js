@@ -58,8 +58,8 @@ router.post('/',
 
 router.post('/', async (req, res) => {
 
-      await gotopython()
-      await readtxtfile(user_file);
+      await fileremake()
+      await readfile(user_file);
 
       res.render('result');
       }
@@ -96,6 +96,159 @@ router.post('/', async (req, res) => {
  router.get('/task5', async(req,res)=>{
       res.status(201).json(await task5data());
  });
+
+
+ async function fileremake(){
+      let dataToSend;
+      let python_loc = path.join(__dirname, '../python_module/fileRemake.py');
+      console.log(python_loc);
+      const python = spawn('python3', [python_loc, user_file]);
+      python.stdout.on('data', (data) => {
+            dataToSend = data.toString();
+            console.log(dataToSend);
+      })
+      python.on('close', (code) => {
+            console.log('exit pythonModule');    
+      })
+
+      for await(const data of python.stdout){
+      } 
+}
+
+
+function readfile(filename){
+      let fileloc=path.join(__dirname,'../remake/'+filename);
+      console.log(fileloc);
+
+     arr = fs.readFileSync(fileloc).toString().split("\n");
+
+     for(i=0; i<arr.length;i++){
+           line = arr[i].split("\t");  
+
+           insertcore(i%5,line); 
+     }
+     inserttask(arr1,arr2,arr3,arr4,arr5);   
+}
+
+function insertcore(datanum, line){
+      if(datanum==0){
+            Core1.create({
+                  task1:line[1],
+                  task2:line[2],
+                  task3:line[3],
+                  task4:line[4],
+                  task5:line[5]
+            });
+            
+            arr1.push(line[1]);
+            arr2.push(line[2]);
+            arr3.push(line[3]);
+            arr4.push(line[4]);
+            arr5.push(line[5]);
+
+
+      }
+      else if(datanum==1){
+            Core2.create({
+                  task1:line[1],
+                  task2:line[2],
+                  task3:line[3],
+                  task4:line[4],
+                  task5:line[5]
+            });
+            arr1.push(line[1]);
+            arr2.push(line[2]);
+            arr3.push(line[3]);
+            arr4.push(line[4]);
+            arr5.push(line[5]);
+      }
+      else if(datanum==2){
+            Core3.create({
+                  task1:line[1],
+                  task2:line[2],
+                  task3:line[3],
+                  task4:line[4],
+                  task5:line[5]
+            });
+            arr1.push(line[1]);
+            arr2.push(line[2]);
+            arr3.push(line[3]);
+            arr4.push(line[4]);
+            arr5.push(line[5]);
+      }
+      else if(datanum==3){
+            Core4.create({
+                  task1:line[1],
+                  task2:line[2],
+                  task3:line[3],
+                  task4:line[4],
+                  task5:line[5]
+            });
+            arr1.push(line[1]);
+            arr2.push(line[2]);
+            arr3.push(line[3]);
+            arr4.push(line[4]);
+            arr5.push(line[5]);
+      }
+      else if(datanum==4){
+            Core5.create({
+                  task1:line[1],
+                  task2:line[2],
+                  task3:line[3],
+                  task4:line[4],
+                  task5:line[5]
+            });
+            arr1.push(line[1]);
+            arr2.push(line[2]);
+            arr3.push(line[3]);
+            arr4.push(line[4]);
+            arr5.push(line[5]);
+      }
+      else{
+      }
+}
+
+
+function inserttask(arr1,arr2,arr3,arr4,arr5){
+      for(i=0;i<arr1.length;i+=5){
+            Task1.create({
+                  core1:arr1[i],
+                  core2:arr1[i+1],
+                  core3:arr1[i+2],
+                  core4:arr1[i+3],
+                  core5:arr1[i+4]
+            })
+            Task2.create({
+                  core1:arr2[i],
+                  core2:arr2[i+1],
+                  core3:arr2[i+2],
+                  core4:arr2[i+3],
+                  core5:arr2[i+4]
+            })
+            Task3.create({
+                  core1:arr3[i],
+                  core2:arr3[i+1],
+                  core3:arr3[i+2],
+                  core4:arr3[i+3],
+                  core5:arr3[i+4]
+            })
+            Task4.create({
+                  core1:arr4[i],
+                  core2:arr4[i+1],
+                  core3:arr4[i+2],
+                  core4:arr4[i+3],
+                  core5:arr4[i+4]
+            })
+            Task5.create({
+                  core1:arr5[i],
+                  core2:arr5[i+1],
+                  core3:arr5[i+2],
+                  core4:arr5[i+3],
+                  core5:arr5[i+4]
+            })
+      }
+}
+
 
  async function task5data(){
       let core1_max;
@@ -922,156 +1075,6 @@ async function core2data(){
 return core2_value;
 }
 
-async function gotopython(){
-      let dataToSend;
-      let python_loc = path.join(__dirname, '../python_module/fileRemake.py');
-      console.log(python_loc);
-      const python = spawn('python3', [python_loc, user_file]);
-      python.stdout.on('data', (data) => {
-            dataToSend = data.toString();
-            console.log(dataToSend);
-      })
-      python.on('close', (code) => {
-            console.log('exit pythonModule');    
-      })
-
-      for await(const data of python.stdout){
-      } 
-}
-
-
-function readtxtfile(filename){
-      let fileloc=path.join(__dirname,'../remake/'+filename);
-      console.log(fileloc);
-
-     arr = fs.readFileSync(fileloc).toString().split("\n");
-
-     for(i=0; i<arr.length;i++){
-           line = arr[i].split("\t");  
-
-           insertcore(i%5,line); 
-     }
-     inserttask(arr1,arr2,arr3,arr4,arr5);   
-}
-
-function insertcore(datanum, line){
-      if(datanum==0){
-            Core1.create({
-                  task1:line[1],
-                  task2:line[2],
-                  task3:line[3],
-                  task4:line[4],
-                  task5:line[5]
-            });
-            
-            arr1.push(line[1]);
-            arr2.push(line[2]);
-            arr3.push(line[3]);
-            arr4.push(line[4]);
-            arr5.push(line[5]);
-
-
-      }
-      else if(datanum==1){
-            Core2.create({
-                  task1:line[1],
-                  task2:line[2],
-                  task3:line[3],
-                  task4:line[4],
-                  task5:line[5]
-            });
-            arr1.push(line[1]);
-            arr2.push(line[2]);
-            arr3.push(line[3]);
-            arr4.push(line[4]);
-            arr5.push(line[5]);
-      }
-      else if(datanum==2){
-            Core3.create({
-                  task1:line[1],
-                  task2:line[2],
-                  task3:line[3],
-                  task4:line[4],
-                  task5:line[5]
-            });
-            arr1.push(line[1]);
-            arr2.push(line[2]);
-            arr3.push(line[3]);
-            arr4.push(line[4]);
-            arr5.push(line[5]);
-      }
-      else if(datanum==3){
-            Core4.create({
-                  task1:line[1],
-                  task2:line[2],
-                  task3:line[3],
-                  task4:line[4],
-                  task5:line[5]
-            });
-            arr1.push(line[1]);
-            arr2.push(line[2]);
-            arr3.push(line[3]);
-            arr4.push(line[4]);
-            arr5.push(line[5]);
-      }
-      else if(datanum==4){
-            Core5.create({
-                  task1:line[1],
-                  task2:line[2],
-                  task3:line[3],
-                  task4:line[4],
-                  task5:line[5]
-            });
-            arr1.push(line[1]);
-            arr2.push(line[2]);
-            arr3.push(line[3]);
-            arr4.push(line[4]);
-            arr5.push(line[5]);
-      }
-      else{
-      }
-}
-
-
-function inserttask(arr1,arr2,arr3,arr4,arr5){
-      for(i=0;i<arr1.length;i+=5){
-            Task1.create({
-                  core1:arr1[i],
-                  core2:arr1[i+1],
-                  core3:arr1[i+2],
-                  core4:arr1[i+3],
-                  core5:arr1[i+4]
-            })
-            Task2.create({
-                  core1:arr2[i],
-                  core2:arr2[i+1],
-                  core3:arr2[i+2],
-                  core4:arr2[i+3],
-                  core5:arr2[i+4]
-            })
-            Task3.create({
-                  core1:arr3[i],
-                  core2:arr3[i+1],
-                  core3:arr3[i+2],
-                  core4:arr3[i+3],
-                  core5:arr3[i+4]
-            })
-            Task4.create({
-                  core1:arr4[i],
-                  core2:arr4[i+1],
-                  core3:arr4[i+2],
-                  core4:arr4[i+3],
-                  core5:arr4[i+4]
-            })
-            Task5.create({
-                  core1:arr5[i],
-                  core2:arr5[i+1],
-                  core3:arr5[i+2],
-                  core4:arr5[i+3],
-                  core5:arr5[i+4]
-            })
-      }
-}
 
 
 
